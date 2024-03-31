@@ -103,7 +103,7 @@ class App {
         return `
             <div class='step'>
             ${this.renderList(
-            step.notes.map((step) => `<input class='step' type='checkbox' data-step='${index}' ${step ? "checked" : ""} />`))}
+            step.notes.map((step) => `<input class='step-btn' type='checkbox' data-step='${index}' ${step ? "checked" : ""} />`))}
             </div>
             `;
     }
@@ -198,6 +198,7 @@ class Sequencer {
         this.preOut = new AnalyserNode(this.ctx);
         this.preOut.connect(this.ctx.destination);
         this.sampleMap = ["kick", "snare", "closed-hat", "open-hat"];
+        this.sampleMap = ["open-hat", "closed-hat", "snare", "kick"];
 
         this.samples = samples;
 
@@ -207,52 +208,52 @@ class Sequencer {
                 notes: [1, 0, 0, 1],
             },
             {
-                notes: [0, 0, 1, 0],
+                notes: [0, 1, 0, 0],
             },
             {
-                notes: [0, 0, 1, 0],
+                notes: [0, 1, 0, 0],
             },
             {
-                notes: [0, 0, 1, 0],
+                notes: [0, 1, 0, 0],
             },
             // 2
             {
+                notes: [0, 0, 1, 0],
+            },
+            {
                 notes: [0, 1, 0, 0],
             },
             {
-                notes: [0, 0, 1, 0],
+                notes: [0, 1, 0, 0],
             },
             {
-                notes: [0, 0, 1, 0],
-            },
-            {
-                notes: [1, 0, 0, 0],
+                notes: [0, 0, 0, 1],
             },
             // 3
             {
-                notes: [0, 0, 1, 0],
+                notes: [0, 1, 0, 0],
             },
             {
-                notes: [1, 0, 0, 0],
+                notes: [0, 0, 0, 1],
             },
-            {
-                notes: [0, 0, 1, 0],
-            },
-            {
-                notes: [0, 0, 1, 0],
-            },
-            // 4
             {
                 notes: [0, 1, 0, 0],
             },
             {
-                notes: [0, 0, 1, 0],
+                notes: [0, 1, 0, 0],
             },
+            // 4
             {
                 notes: [0, 0, 1, 0],
             },
             {
-                notes: [0, 0, 1, 0],
+                notes: [0, 1, 0, 0],
+            },
+            {
+                notes: [0, 1, 0, 0],
+            },
+            {
+                notes: [0, 1, 0, 0],
             },
         ];
 
@@ -327,7 +328,7 @@ class Sequencer {
     }
 
     reloadSequencer() {
-        const steps = Array.from(document.querySelectorAll('input.step'))
+        const steps = Array.from(document.querySelectorAll('input.step-btn'))
 
             .reduce((steps, stepSample) => {
                 let dataStep = stepSample.getAttribute('data-step');
