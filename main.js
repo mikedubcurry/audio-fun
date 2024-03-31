@@ -171,8 +171,8 @@ class Synth {
             this.oscs[note].gain.connect(this.gain);
             this.oscs[note].osc.connect(this.oscs[note].gain);
             this.oscs[note].osc.start(0);
-            this.oscs[note].osc.type = "sawtooth";
-            this.oscs[note].osc.frequency.value = note / 4;
+            this.oscs[note].osc.type = "triangle";
+            this.oscs[note].osc.frequency.value = note / 1;
         } else {
             this.oscs[note].gain.gain.value = 0.8;
         }
