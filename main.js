@@ -34,6 +34,7 @@ class App {
             m: 493.88,
             ",": 523.25,
         }
+        this.visualizerActive = false;
         this.arraySeq = new Uint8Array(1024);
         this.arraySynth = new Uint8Array(1024);
         this.array = new Uint8Array(1024);
@@ -72,7 +73,10 @@ class App {
             } else {
                 e.target.innerText = "Play";
             }
-            this.visualizer.draw();
+            if (!this.visualizerActive) {
+                this.visualizer.draw();
+                this.visualizerActive = true;
+            }
         });
 
         stopButton.addEventListener("click", (e) => {
@@ -92,6 +96,10 @@ class App {
             if (this.notes[e.key])
                 this.keys[e.key] = true;
             this.playKeys();
+            if (!this.visualizerActive) {
+                this.visualizer.draw();
+                this.visualizerActive = true;
+            }
         })
 
         window.addEventListener('keyup', e => {
@@ -105,6 +113,10 @@ class App {
             this.visualizer.addSource('seq', this.sequencer);
             this.renderSequencer();
             this.sequencer.handleStepChange();
+            if (!this.visualizerActive) {
+                this.visualizer.draw();
+                this.visualizerActive = true;
+            }
 
 
         })

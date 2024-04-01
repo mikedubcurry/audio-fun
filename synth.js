@@ -27,10 +27,10 @@ export class Synth {
             this.oscs[note].osc.connect(this.oscs[note].filter);
             this.oscs[note].filter.connect(this.oscs[note].gain);
             this.oscs[note].osc.start(0);
-            this.oscs[note].osc.type = "sawtooth";
-            this.oscs[note].osc.frequency.value = note / 4;
+            this.oscs[note].osc.type = "triangle";
+            this.oscs[note].osc.frequency.value = note / 4
         } else {
-            this.oscs[note].gain.gain.value = 0.6;
+            this.oscs[note].gain.gain.value = .6;
         }
         this.isPlaying = true;
     }
